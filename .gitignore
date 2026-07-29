@@ -1,0 +1,16 @@
+node_modules/
+
+# Secrets — ne JAMAIS versionner. .env.example (placeholder) reste suivi.
+.env
+.env.local
+.env.*.local
+!.env.example
+
+dist/
+data/output/*.json
+data/output/*.csv
+# Exception : artefact de démo committé pour que le dashboard s'affiche dès le clone.
+# Régénérable à l'identique par `npm run demo` (sortie déterministe).
+!data/output/ecritures.json
+docs/_artifact-body.html
+*.log

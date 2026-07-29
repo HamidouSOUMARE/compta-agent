@@ -1,0 +1,2268 @@
+{
+  "generatedAt": "2026-07-05T12:41:18.706Z",
+  "mode": "deterministe",
+  "totalFactures": 20,
+  "autoValides": 10,
+  "aRevoir": 10,
+  "totalDebit": 35134,
+  "totalCredit": 35134,
+  "dossiers": [
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/01_marchandises_textile.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/01_marchandises_textile.pdf",
+      "fields": {
+        "fournisseur": "Textile Gros SARL",
+        "siren": "401234562",
+        "tvaIntra": "FR46401234562D",
+        "dateFacture": "2026-03-12",
+        "numeroFacture": "FAC-2026-001",
+        "montantHT": 1250,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 250
+          }
+        ],
+        "montantTTC": 1500,
+        "paysFournisseur": "FR",
+        "designation": "Achat de marchandises textiles pour revente",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/01_marchandises_textile.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/01_marchandises_textile.pdf",
+          "journal": "ACH",
+          "date": "2026-03-12",
+          "numeroPiece": "FAC-2026-001",
+          "libelle": "Textile Gros SARL - FAC-2026-001",
+          "lignes": [
+            {
+              "compte": "607000",
+              "libelle": "Achats de marchandises - Textile Gros SARL - FAC-2026-001",
+              "debit": 1250,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-001",
+              "debit": 250,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Textile Gros SARL - FAC-2026-001",
+              "debit": 0,
+              "credit": 1500
+            }
+          ],
+          "totalDebit": 1500,
+          "totalCredit": 1500,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "607000",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/01_marchandises_textile.pdf",
+        "journal": "ACH",
+        "date": "2026-03-12",
+        "numeroPiece": "FAC-2026-001",
+        "libelle": "Textile Gros SARL - FAC-2026-001",
+        "lignes": [
+          {
+            "compte": "607000",
+            "libelle": "Achats de marchandises - Textile Gros SARL - FAC-2026-001",
+            "debit": 1250,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-001",
+            "debit": 250,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Textile Gros SARL - FAC-2026-001",
+            "debit": 0,
+            "credit": 1500
+          }
+        ],
+        "totalDebit": 1500,
+        "totalCredit": 1500,
+        "equilibre": true
+      },
+      "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/02_fournitures_papeterie.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/02_fournitures_papeterie.pdf",
+      "fields": {
+        "fournisseur": "Papeterie Centrale",
+        "siren": "512345018",
+        "tvaIntra": "FR32512345018D",
+        "dateFacture": "2026-03-05",
+        "numeroFacture": "FAC-2026-002",
+        "montantHT": 180,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 36
+          }
+        ],
+        "montantTTC": 216,
+        "paysFournisseur": "FR",
+        "designation": "Fournitures administratives et papeterie",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/02_fournitures_papeterie.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/02_fournitures_papeterie.pdf",
+          "journal": "ACH",
+          "date": "2026-03-05",
+          "numeroPiece": "FAC-2026-002",
+          "libelle": "Papeterie Centrale - FAC-2026-002",
+          "lignes": [
+            {
+              "compte": "606400",
+              "libelle": "Achats non stockés (fournitures, énergie) - Papeterie Centrale - FAC-2026-002",
+              "debit": 180,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-002",
+              "debit": 36,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Papeterie Centrale - FAC-2026-002",
+              "debit": 0,
+              "credit": 216
+            }
+          ],
+          "totalDebit": 216,
+          "totalCredit": 216,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Classé en 606400 (Achats non stockés (fournitures, énergie)) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "606400",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/02_fournitures_papeterie.pdf",
+        "journal": "ACH",
+        "date": "2026-03-05",
+        "numeroPiece": "FAC-2026-002",
+        "libelle": "Papeterie Centrale - FAC-2026-002",
+        "lignes": [
+          {
+            "compte": "606400",
+            "libelle": "Achats non stockés (fournitures, énergie) - Papeterie Centrale - FAC-2026-002",
+            "debit": 180,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-002",
+            "debit": 36,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Papeterie Centrale - FAC-2026-002",
+            "debit": 0,
+            "credit": 216
+          }
+        ],
+        "totalDebit": 216,
+        "totalCredit": 216,
+        "equilibre": true
+      },
+      "justification": "Classé en 606400 (Achats non stockés (fournitures, énergie)) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/03_loyer_bail.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/03_loyer_bail.pdf",
+      "fields": {
+        "fournisseur": "SCI Les Tilleuls",
+        "siren": "602345126",
+        "tvaIntra": "FR80602345126D",
+        "dateFacture": "2026-03-01",
+        "numeroFacture": "FAC-2026-003",
+        "montantHT": 900,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 180
+          }
+        ],
+        "montantTTC": 1080,
+        "paysFournisseur": "FR",
+        "designation": "Loyer bail commercial mars 2026",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/03_loyer_bail.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/03_loyer_bail.pdf",
+          "journal": "ACH",
+          "date": "2026-03-01",
+          "numeroPiece": "FAC-2026-003",
+          "libelle": "SCI Les Tilleuls - FAC-2026-003",
+          "lignes": [
+            {
+              "compte": "613000",
+              "libelle": "Locations - SCI Les Tilleuls - FAC-2026-003",
+              "debit": 900,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-003",
+              "debit": 180,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur SCI Les Tilleuls - FAC-2026-003",
+              "debit": 0,
+              "credit": 1080
+            }
+          ],
+          "totalDebit": 1080,
+          "totalCredit": 1080,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Classé en 613000 (Locations) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "613000",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/03_loyer_bail.pdf",
+        "journal": "ACH",
+        "date": "2026-03-01",
+        "numeroPiece": "FAC-2026-003",
+        "libelle": "SCI Les Tilleuls - FAC-2026-003",
+        "lignes": [
+          {
+            "compte": "613000",
+            "libelle": "Locations - SCI Les Tilleuls - FAC-2026-003",
+            "debit": 900,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-003",
+            "debit": 180,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur SCI Les Tilleuls - FAC-2026-003",
+            "debit": 0,
+            "credit": 1080
+          }
+        ],
+        "totalDebit": 1080,
+        "totalCredit": 1080,
+        "equilibre": true
+      },
+      "justification": "Classé en 613000 (Locations) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/04_honoraires_ec.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/04_honoraires_ec.pdf",
+      "fields": {
+        "fournisseur": "Cabinet Durand Expertise",
+        "siren": "703456236",
+        "tvaIntra": "FR54703456236D",
+        "dateFacture": "2026-03-15",
+        "numeroFacture": "FAC-2026-004",
+        "montantHT": 600,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 120
+          }
+        ],
+        "montantTTC": 720,
+        "paysFournisseur": "FR",
+        "designation": "Honoraires expert-comptable mensuels",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/04_honoraires_ec.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/04_honoraires_ec.pdf",
+          "journal": "ACH",
+          "date": "2026-03-15",
+          "numeroPiece": "FAC-2026-004",
+          "libelle": "Cabinet Durand Expertise - FAC-2026-004",
+          "lignes": [
+            {
+              "compte": "622600",
+              "libelle": "Honoraires - Cabinet Durand Expertise - FAC-2026-004",
+              "debit": 600,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-004",
+              "debit": 120,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Cabinet Durand Expertise - FAC-2026-004",
+              "debit": 0,
+              "credit": 720
+            }
+          ],
+          "totalDebit": 720,
+          "totalCredit": 720,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Classé en 622600 (Honoraires) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "622600",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/04_honoraires_ec.pdf",
+        "journal": "ACH",
+        "date": "2026-03-15",
+        "numeroPiece": "FAC-2026-004",
+        "libelle": "Cabinet Durand Expertise - FAC-2026-004",
+        "lignes": [
+          {
+            "compte": "622600",
+            "libelle": "Honoraires - Cabinet Durand Expertise - FAC-2026-004",
+            "debit": 600,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-004",
+            "debit": 120,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Cabinet Durand Expertise - FAC-2026-004",
+            "debit": 0,
+            "credit": 720
+          }
+        ],
+        "totalDebit": 720,
+        "totalCredit": 720,
+        "equilibre": true
+      },
+      "justification": "Classé en 622600 (Honoraires) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/05_telecom.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/05_telecom.pdf",
+      "fields": {
+        "fournisseur": "Orange Business",
+        "siren": "380129866",
+        "tvaIntra": "FR89380129866D",
+        "dateFacture": "2026-03-20",
+        "numeroFacture": "FAC-2026-005",
+        "montantHT": 45,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 9
+          }
+        ],
+        "montantTTC": 54,
+        "paysFournisseur": "FR",
+        "designation": "Abonnement telephone et internet professionnel",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/05_telecom.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/05_telecom.pdf",
+          "journal": "ACH",
+          "date": "2026-03-20",
+          "numeroPiece": "FAC-2026-005",
+          "libelle": "Orange Business - FAC-2026-005",
+          "lignes": [
+            {
+              "compte": "626000",
+              "libelle": "Frais postaux et télécommunications - Orange Business - FAC-2026-005",
+              "debit": 45,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-005",
+              "debit": 9,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Orange Business - FAC-2026-005",
+              "debit": 0,
+              "credit": 54
+            }
+          ],
+          "totalDebit": 54,
+          "totalCredit": 54,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Classé en 626000 (Frais postaux et télécommunications) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "626000",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/05_telecom.pdf",
+        "journal": "ACH",
+        "date": "2026-03-20",
+        "numeroPiece": "FAC-2026-005",
+        "libelle": "Orange Business - FAC-2026-005",
+        "lignes": [
+          {
+            "compte": "626000",
+            "libelle": "Frais postaux et télécommunications - Orange Business - FAC-2026-005",
+            "debit": 45,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-005",
+            "debit": 9,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Orange Business - FAC-2026-005",
+            "debit": 0,
+            "credit": 54
+          }
+        ],
+        "totalDebit": 54,
+        "totalCredit": 54,
+        "equilibre": true
+      },
+      "justification": "Classé en 626000 (Frais postaux et télécommunications) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/06_marchandises_tva55.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/06_marchandises_tva55.pdf",
+      "fields": {
+        "fournisseur": "Primeur des Halles",
+        "siren": "414567123",
+        "tvaIntra": "FR70414567123D",
+        "dateFacture": "2026-03-22",
+        "numeroFacture": "FAC-2026-006",
+        "montantHT": 800,
+        "tvaParTaux": [
+          {
+            "taux": 5.5,
+            "montant": 44
+          }
+        ],
+        "montantTTC": 844,
+        "paysFournisseur": "FR",
+        "designation": "Achat de marchandises alimentaires pour revente",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/06_marchandises_tva55.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/06_marchandises_tva55.pdf",
+          "journal": "ACH",
+          "date": "2026-03-22",
+          "numeroPiece": "FAC-2026-006",
+          "libelle": "Primeur des Halles - FAC-2026-006",
+          "lignes": [
+            {
+              "compte": "607000",
+              "libelle": "Achats de marchandises - Primeur des Halles - FAC-2026-006",
+              "debit": 800,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 5.5% - FAC-2026-006",
+              "debit": 44,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Primeur des Halles - FAC-2026-006",
+              "debit": 0,
+              "credit": 844
+            }
+          ],
+          "totalDebit": 844,
+          "totalCredit": 844,
+          "equilibre": true
+        },
+        "confidence": 0.9,
+        "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "607000",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 90%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 0.9,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/06_marchandises_tva55.pdf",
+        "journal": "ACH",
+        "date": "2026-03-22",
+        "numeroPiece": "FAC-2026-006",
+        "libelle": "Primeur des Halles - FAC-2026-006",
+        "lignes": [
+          {
+            "compte": "607000",
+            "libelle": "Achats de marchandises - Primeur des Halles - FAC-2026-006",
+            "debit": 800,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 5.5% - FAC-2026-006",
+            "debit": 44,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Primeur des Halles - FAC-2026-006",
+            "debit": 0,
+            "credit": 844
+          }
+        ],
+        "totalDebit": 844,
+        "totalCredit": 844,
+        "equilibre": true
+      },
+      "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 90%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/07_entretien.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/07_entretien.pdf",
+      "fields": {
+        "fournisseur": "Plomberie Martin",
+        "siren": "425678232",
+        "tvaIntra": "FR26425678232D",
+        "dateFacture": "2026-03-18",
+        "numeroFacture": "FAC-2026-007",
+        "montantHT": 320,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 64
+          }
+        ],
+        "montantTTC": 384,
+        "paysFournisseur": "FR",
+        "designation": "Reparation et entretien plomberie des locaux",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/07_entretien.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/07_entretien.pdf",
+          "journal": "ACH",
+          "date": "2026-03-18",
+          "numeroPiece": "FAC-2026-007",
+          "libelle": "Plomberie Martin - FAC-2026-007",
+          "lignes": [
+            {
+              "compte": "615000",
+              "libelle": "Entretien et réparations - Plomberie Martin - FAC-2026-007",
+              "debit": 320,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-007",
+              "debit": 64,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Plomberie Martin - FAC-2026-007",
+              "debit": 0,
+              "credit": 384
+            }
+          ],
+          "totalDebit": 384,
+          "totalCredit": 384,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Classé en 615000 (Entretien et réparations) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "615000",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/07_entretien.pdf",
+        "journal": "ACH",
+        "date": "2026-03-18",
+        "numeroPiece": "FAC-2026-007",
+        "libelle": "Plomberie Martin - FAC-2026-007",
+        "lignes": [
+          {
+            "compte": "615000",
+            "libelle": "Entretien et réparations - Plomberie Martin - FAC-2026-007",
+            "debit": 320,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-007",
+            "debit": 64,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Plomberie Martin - FAC-2026-007",
+            "debit": 0,
+            "credit": 384
+          }
+        ],
+        "totalDebit": 384,
+        "totalCredit": 384,
+        "equilibre": true
+      },
+      "justification": "Classé en 615000 (Entretien et réparations) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/08_energie_edf.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/08_energie_edf.pdf",
+      "fields": {
+        "fournisseur": "EDF Entreprises",
+        "siren": "552081317",
+        "tvaIntra": "FR03552081317D",
+        "dateFacture": "2026-03-25",
+        "numeroFacture": "FAC-2026-008",
+        "montantHT": 210,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 42
+          }
+        ],
+        "montantTTC": 252,
+        "paysFournisseur": "FR",
+        "designation": "Fourniture electricite energie des locaux",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/08_energie_edf.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/08_energie_edf.pdf",
+          "journal": "ACH",
+          "date": "2026-03-25",
+          "numeroPiece": "FAC-2026-008",
+          "libelle": "EDF Entreprises - FAC-2026-008",
+          "lignes": [
+            {
+              "compte": "606400",
+              "libelle": "Achats non stockés (fournitures, énergie) - EDF Entreprises - FAC-2026-008",
+              "debit": 210,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-008",
+              "debit": 42,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur EDF Entreprises - FAC-2026-008",
+              "debit": 0,
+              "credit": 252
+            }
+          ],
+          "totalDebit": 252,
+          "totalCredit": 252,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Classé en 606400 (Achats non stockés (fournitures, énergie)) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "606400",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/08_energie_edf.pdf",
+        "journal": "ACH",
+        "date": "2026-03-25",
+        "numeroPiece": "FAC-2026-008",
+        "libelle": "EDF Entreprises - FAC-2026-008",
+        "lignes": [
+          {
+            "compte": "606400",
+            "libelle": "Achats non stockés (fournitures, énergie) - EDF Entreprises - FAC-2026-008",
+            "debit": 210,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-008",
+            "debit": 42,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur EDF Entreprises - FAC-2026-008",
+            "debit": 0,
+            "credit": 252
+          }
+        ],
+        "totalDebit": 252,
+        "totalCredit": 252,
+        "equilibre": true
+      },
+      "justification": "Classé en 606400 (Achats non stockés (fournitures, énergie)) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/09_honoraires_avocat.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/09_honoraires_avocat.pdf",
+      "fields": {
+        "fournisseur": "Maitre Lefevre Avocat",
+        "siren": "436789341",
+        "tvaIntra": "FR79436789341D",
+        "dateFacture": "2026-03-28",
+        "numeroFacture": "FAC-2026-009",
+        "montantHT": 1500,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 300
+          }
+        ],
+        "montantTTC": 1800,
+        "paysFournisseur": "FR",
+        "designation": "Honoraires conseil juridique",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/09_honoraires_avocat.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/09_honoraires_avocat.pdf",
+          "journal": "ACH",
+          "date": "2026-03-28",
+          "numeroPiece": "FAC-2026-009",
+          "libelle": "Maitre Lefevre Avocat - FAC-2026-009",
+          "lignes": [
+            {
+              "compte": "622600",
+              "libelle": "Honoraires - Maitre Lefevre Avocat - FAC-2026-009",
+              "debit": 1500,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-009",
+              "debit": 300,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Maitre Lefevre Avocat - FAC-2026-009",
+              "debit": 0,
+              "credit": 1800
+            }
+          ],
+          "totalDebit": 1800,
+          "totalCredit": 1800,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Classé en 622600 (Honoraires) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "622600",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/09_honoraires_avocat.pdf",
+        "journal": "ACH",
+        "date": "2026-03-28",
+        "numeroPiece": "FAC-2026-009",
+        "libelle": "Maitre Lefevre Avocat - FAC-2026-009",
+        "lignes": [
+          {
+            "compte": "622600",
+            "libelle": "Honoraires - Maitre Lefevre Avocat - FAC-2026-009",
+            "debit": 1500,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-009",
+            "debit": 300,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Maitre Lefevre Avocat - FAC-2026-009",
+            "debit": 0,
+            "credit": 1800
+          }
+        ],
+        "totalDebit": 1800,
+        "totalCredit": 1800,
+        "equilibre": true
+      },
+      "justification": "Classé en 622600 (Honoraires) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/10_doublon.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/10_doublon.pdf",
+      "fields": {
+        "fournisseur": "Textile Gros SARL",
+        "siren": "401234562",
+        "tvaIntra": "FR46401234562D",
+        "dateFacture": "2026-03-12",
+        "numeroFacture": "FAC-2026-001",
+        "montantHT": 1250,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 250
+          }
+        ],
+        "montantTTC": 1500,
+        "paysFournisseur": "FR",
+        "designation": "Achat de marchandises textiles pour revente",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/10_doublon.pdf"
+      },
+      "validation": {
+        "statut": "invalide",
+        "anomalies": [
+          {
+            "code": "DOUBLON",
+            "gravite": "bloquante",
+            "message": "Doublon probable : Textile Gros SARL / FAC-2026-001 / 1500 € déjà traité."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/10_doublon.pdf",
+          "journal": "ACH",
+          "date": "2026-03-12",
+          "numeroPiece": "FAC-2026-001",
+          "libelle": "Textile Gros SARL - FAC-2026-001",
+          "lignes": [
+            {
+              "compte": "607000",
+              "libelle": "Achats de marchandises - Textile Gros SARL - FAC-2026-001",
+              "debit": 1250,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-001",
+              "debit": 250,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Textile Gros SARL - FAC-2026-001",
+              "debit": 0,
+              "credit": 1500
+            }
+          ],
+          "totalDebit": 1500,
+          "totalCredit": 1500,
+          "equilibre": true
+        },
+        "confidence": 0.25,
+        "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA déductible sur biens et services.",
+        "compteCharge": "607000",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Anomalie bloquante — Doublon probable : Textile Gros SARL / FAC-2026-001 / 1500 € déjà traité."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.25,
+      "anomalies": [
+        {
+          "code": "DOUBLON",
+          "gravite": "bloquante",
+          "message": "Doublon probable : Textile Gros SARL / FAC-2026-001 / 1500 € déjà traité."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/10_doublon.pdf",
+        "journal": "ACH",
+        "date": "2026-03-12",
+        "numeroPiece": "FAC-2026-001",
+        "libelle": "Textile Gros SARL - FAC-2026-001",
+        "lignes": [
+          {
+            "compte": "607000",
+            "libelle": "Achats de marchandises - Textile Gros SARL - FAC-2026-001",
+            "debit": 1250,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-001",
+            "debit": 250,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Textile Gros SARL - FAC-2026-001",
+            "debit": 0,
+            "credit": 1500
+          }
+        ],
+        "totalDebit": 1500,
+        "totalCredit": 1500,
+        "equilibre": true
+      },
+      "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA déductible sur biens et services.",
+      "motifRoutage": "Anomalie bloquante — Doublon probable : Textile Gros SARL / FAC-2026-001 / 1500 € déjà traité."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/11_tva_incoherente.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/11_tva_incoherente.pdf",
+      "fields": {
+        "fournisseur": "Bureautique Plus",
+        "siren": "447890450",
+        "tvaIntra": "FR08447890450D",
+        "dateFacture": "2026-03-10",
+        "numeroFacture": "FAC-2026-011",
+        "montantHT": 500,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 100
+          }
+        ],
+        "montantTTC": 620,
+        "paysFournisseur": "FR",
+        "designation": "Fournitures diverses d'atelier",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/11_tva_incoherente.pdf"
+      },
+      "validation": {
+        "statut": "invalide",
+        "anomalies": [
+          {
+            "code": "TTC_INCOHERENT",
+            "gravite": "bloquante",
+            "message": "Incohérence : HT 500 + TVA 100.00 ≠ TTC 620."
+          },
+          {
+            "code": "COMPTE_AMBIGU",
+            "gravite": "avertissement",
+            "message": "Bien durable ≤ 500 € HT : maintenu en charge (606400) par tolérance. Plusieurs natures possibles (218400, 606400)."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/11_tva_incoherente.pdf",
+          "journal": "ACH",
+          "date": "2026-03-10",
+          "numeroPiece": "FAC-2026-011",
+          "libelle": "Bureautique Plus - FAC-2026-011",
+          "lignes": [
+            {
+              "compte": "606400",
+              "libelle": "Petit équipement (tolérance < 500 €) - Bureautique Plus - FAC-2026-011",
+              "debit": 500,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% - FAC-2026-011",
+              "debit": 100,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Bureautique Plus - FAC-2026-011",
+              "debit": 0,
+              "credit": 600
+            }
+          ],
+          "totalDebit": 600,
+          "totalCredit": 600,
+          "equilibre": true
+        },
+        "confidence": 0.25,
+        "justification": "Bien durable ≤ 500 € HT : maintenu en charge (606400) par tolérance. Plusieurs natures possibles (218400, 606400). TVA déductible sur biens et services.",
+        "compteCharge": "606400",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sur biens et services."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Anomalie bloquante — Incohérence : HT 500 + TVA 100.00 ≠ TTC 620."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.25,
+      "anomalies": [
+        {
+          "code": "TTC_INCOHERENT",
+          "gravite": "bloquante",
+          "message": "Incohérence : HT 500 + TVA 100.00 ≠ TTC 620."
+        },
+        {
+          "code": "COMPTE_AMBIGU",
+          "gravite": "avertissement",
+          "message": "Bien durable ≤ 500 € HT : maintenu en charge (606400) par tolérance. Plusieurs natures possibles (218400, 606400)."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/11_tva_incoherente.pdf",
+        "journal": "ACH",
+        "date": "2026-03-10",
+        "numeroPiece": "FAC-2026-011",
+        "libelle": "Bureautique Plus - FAC-2026-011",
+        "lignes": [
+          {
+            "compte": "606400",
+            "libelle": "Petit équipement (tolérance < 500 €) - Bureautique Plus - FAC-2026-011",
+            "debit": 500,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% - FAC-2026-011",
+            "debit": 100,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Bureautique Plus - FAC-2026-011",
+            "debit": 0,
+            "credit": 600
+          }
+        ],
+        "totalDebit": 600,
+        "totalCredit": 600,
+        "equilibre": true
+      },
+      "justification": "Bien durable ≤ 500 € HT : maintenu en charge (606400) par tolérance. Plusieurs natures possibles (218400, 606400). TVA déductible sur biens et services.",
+      "motifRoutage": "Anomalie bloquante — Incohérence : HT 500 + TVA 100.00 ≠ TTC 620."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/12_siren_invalide.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/12_siren_invalide.pdf",
+      "fields": {
+        "fournisseur": "Distrib Rapide",
+        "siren": "123456780",
+        "tvaIntra": null,
+        "dateFacture": "2026-03-11",
+        "numeroFacture": "FAC-2026-012",
+        "montantHT": 400,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 80
+          }
+        ],
+        "montantTTC": 480,
+        "paysFournisseur": "FR",
+        "designation": "Achat de marchandises pour revente",
+        "champsManquants": [
+          "tvaIntra"
+        ],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/12_siren_invalide.pdf"
+      },
+      "validation": {
+        "statut": "invalide",
+        "anomalies": [
+          {
+            "code": "SIREN_INVALIDE",
+            "gravite": "bloquante",
+            "message": "SIREN 123456780 invalide (échec de la clé de Luhn)."
+          },
+          {
+            "code": "MENTION_MANQUANTE",
+            "gravite": "bloquante",
+            "message": "Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/12_siren_invalide.pdf",
+          "journal": "ACH",
+          "date": "2026-03-11",
+          "numeroPiece": "FAC-2026-012",
+          "libelle": "Distrib Rapide - FAC-2026-012",
+          "lignes": [
+            {
+              "compte": "607000",
+              "libelle": "Achats de marchandises - Distrib Rapide - FAC-2026-012 (dont TVA non déductible 80.00 € réintégrée)",
+              "debit": 480,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Distrib Rapide - FAC-2026-012",
+              "debit": 0,
+              "credit": 480
+            }
+          ],
+          "totalDebit": 480,
+          "totalCredit": 480,
+          "equilibre": true
+        },
+        "confidence": 0.25,
+        "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA non déductible : mention légale obligatoire manquante.",
+        "compteCharge": "607000",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 0,
+          "compteTva": null,
+          "motif": "TVA non déductible : mention légale obligatoire manquante."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Anomalie bloquante — SIREN 123456780 invalide (échec de la clé de Luhn)."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.25,
+      "anomalies": [
+        {
+          "code": "SIREN_INVALIDE",
+          "gravite": "bloquante",
+          "message": "SIREN 123456780 invalide (échec de la clé de Luhn)."
+        },
+        {
+          "code": "MENTION_MANQUANTE",
+          "gravite": "bloquante",
+          "message": "Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/12_siren_invalide.pdf",
+        "journal": "ACH",
+        "date": "2026-03-11",
+        "numeroPiece": "FAC-2026-012",
+        "libelle": "Distrib Rapide - FAC-2026-012",
+        "lignes": [
+          {
+            "compte": "607000",
+            "libelle": "Achats de marchandises - Distrib Rapide - FAC-2026-012 (dont TVA non déductible 80.00 € réintégrée)",
+            "debit": 480,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Distrib Rapide - FAC-2026-012",
+            "debit": 0,
+            "credit": 480
+          }
+        ],
+        "totalDebit": 480,
+        "totalCredit": 480,
+        "equilibre": true
+      },
+      "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA non déductible : mention légale obligatoire manquante.",
+      "motifRoutage": "Anomalie bloquante — SIREN 123456780 invalide (échec de la clé de Luhn)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/13_mention_manquante.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/13_mention_manquante.pdf",
+      "fields": {
+        "fournisseur": "Import Direct",
+        "siren": "458901568",
+        "tvaIntra": null,
+        "dateFacture": "2026-03-14",
+        "numeroFacture": "FAC-2026-013",
+        "montantHT": 750,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 150
+          }
+        ],
+        "montantTTC": 900,
+        "paysFournisseur": "FR",
+        "designation": "Achat de marchandises pour revente",
+        "champsManquants": [
+          "tvaIntra"
+        ],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/13_mention_manquante.pdf"
+      },
+      "validation": {
+        "statut": "invalide",
+        "anomalies": [
+          {
+            "code": "MENTION_MANQUANTE",
+            "gravite": "bloquante",
+            "message": "Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/13_mention_manquante.pdf",
+          "journal": "ACH",
+          "date": "2026-03-14",
+          "numeroPiece": "FAC-2026-013",
+          "libelle": "Import Direct - FAC-2026-013",
+          "lignes": [
+            {
+              "compte": "607000",
+              "libelle": "Achats de marchandises - Import Direct - FAC-2026-013 (dont TVA non déductible 150.00 € réintégrée)",
+              "debit": 900,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Import Direct - FAC-2026-013",
+              "debit": 0,
+              "credit": 900
+            }
+          ],
+          "totalDebit": 900,
+          "totalCredit": 900,
+          "equilibre": true
+        },
+        "confidence": 0.25,
+        "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA non déductible : mention légale obligatoire manquante.",
+        "compteCharge": "607000",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 0,
+          "compteTva": null,
+          "motif": "TVA non déductible : mention légale obligatoire manquante."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Anomalie bloquante — Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.25,
+      "anomalies": [
+        {
+          "code": "MENTION_MANQUANTE",
+          "gravite": "bloquante",
+          "message": "Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/13_mention_manquante.pdf",
+        "journal": "ACH",
+        "date": "2026-03-14",
+        "numeroPiece": "FAC-2026-013",
+        "libelle": "Import Direct - FAC-2026-013",
+        "lignes": [
+          {
+            "compte": "607000",
+            "libelle": "Achats de marchandises - Import Direct - FAC-2026-013 (dont TVA non déductible 150.00 € réintégrée)",
+            "debit": 900,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Import Direct - FAC-2026-013",
+            "debit": 0,
+            "credit": 900
+          }
+        ],
+        "totalDebit": 900,
+        "totalCredit": 900,
+        "equilibre": true
+      },
+      "justification": "Classé en 607000 (Achats de marchandises) sur mots-clés. TVA non déductible : mention légale obligatoire manquante.",
+      "motifRoutage": "Anomalie bloquante — Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/14_restauration.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/14_restauration.pdf",
+      "fields": {
+        "fournisseur": "Restaurant Le Gourmet",
+        "siren": "469012678",
+        "tvaIntra": "FR84469012678D",
+        "dateFacture": "2026-03-16",
+        "numeroFacture": "FAC-2026-014",
+        "montantHT": 120,
+        "tvaParTaux": [
+          {
+            "taux": 10,
+            "montant": 12
+          }
+        ],
+        "montantTTC": 132,
+        "paysFournisseur": "FR",
+        "designation": "Repas d'affaires et reception clients",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/14_restauration.pdf"
+      },
+      "validation": {
+        "statut": "avertissement",
+        "anomalies": [
+          {
+            "code": "TVA_A_VERIFIER",
+            "gravite": "avertissement",
+            "message": "TVA déductible sous conditions (restauration / réception) : à vérifier."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/14_restauration.pdf",
+          "journal": "ACH",
+          "date": "2026-03-16",
+          "numeroPiece": "FAC-2026-014",
+          "libelle": "Restaurant Le Gourmet - FAC-2026-014",
+          "lignes": [
+            {
+              "compte": "625700",
+              "libelle": "Réceptions, missions, déplacements - Restaurant Le Gourmet - FAC-2026-014",
+              "debit": 120,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 10% - FAC-2026-014",
+              "debit": 12,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Restaurant Le Gourmet - FAC-2026-014",
+              "debit": 0,
+              "credit": 132
+            }
+          ],
+          "totalDebit": 132,
+          "totalCredit": 132,
+          "equilibre": true
+        },
+        "confidence": 0.75,
+        "justification": "Classé en 625700 (Réceptions, missions, déplacements) sur mots-clés. TVA déductible sous conditions (restauration / réception) : à vérifier.",
+        "compteCharge": "625700",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445660",
+          "motif": "TVA déductible sous conditions (restauration / réception) : à vérifier."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Contrôle requis — TVA déductible sous conditions (restauration / réception) : à vérifier."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.75,
+      "anomalies": [
+        {
+          "code": "TVA_A_VERIFIER",
+          "gravite": "avertissement",
+          "message": "TVA déductible sous conditions (restauration / réception) : à vérifier."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/14_restauration.pdf",
+        "journal": "ACH",
+        "date": "2026-03-16",
+        "numeroPiece": "FAC-2026-014",
+        "libelle": "Restaurant Le Gourmet - FAC-2026-014",
+        "lignes": [
+          {
+            "compte": "625700",
+            "libelle": "Réceptions, missions, déplacements - Restaurant Le Gourmet - FAC-2026-014",
+            "debit": 120,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 10% - FAC-2026-014",
+            "debit": 12,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Restaurant Le Gourmet - FAC-2026-014",
+            "debit": 0,
+            "credit": 132
+          }
+        ],
+        "totalDebit": 132,
+        "totalCredit": 132,
+        "equilibre": true
+      },
+      "justification": "Classé en 625700 (Réceptions, missions, déplacements) sur mots-clés. TVA déductible sous conditions (restauration / réception) : à vérifier.",
+      "motifRoutage": "Contrôle requis — TVA déductible sous conditions (restauration / réception) : à vérifier."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/15_carburant.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/15_carburant.pdf",
+      "fields": {
+        "fournisseur": "Station Total Access",
+        "siren": "470123787",
+        "tvaIntra": "FR06470123787D",
+        "dateFacture": "2026-03-19",
+        "numeroFacture": "FAC-2026-015",
+        "montantHT": 80,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 16
+          }
+        ],
+        "montantTTC": 96,
+        "paysFournisseur": "FR",
+        "designation": "Carburant essence sans plomb 95 - vehicule de tourisme",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/15_carburant.pdf"
+      },
+      "validation": {
+        "statut": "avertissement",
+        "anomalies": [
+          {
+            "code": "TVA_NON_DEDUCTIBLE",
+            "gravite": "avertissement",
+            "message": "TVA partiellement déductible (prorata 80 %) — Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût)."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/15_carburant.pdf",
+          "journal": "ACH",
+          "date": "2026-03-19",
+          "numeroPiece": "FAC-2026-015",
+          "libelle": "Station Total Access - FAC-2026-015",
+          "lignes": [
+            {
+              "compte": "606400",
+              "libelle": "Carburants (achats non stockés) - Station Total Access - FAC-2026-015 (dont TVA non déductible 3.20 € réintégrée)",
+              "debit": 83.2,
+              "credit": 0
+            },
+            {
+              "compte": "445660",
+              "libelle": "TVA déductible 20% (80% déductible) - FAC-2026-015",
+              "debit": 12.8,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Station Total Access - FAC-2026-015",
+              "debit": 0,
+              "credit": 96
+            }
+          ],
+          "totalDebit": 96,
+          "totalCredit": 96,
+          "equilibre": true
+        },
+        "confidence": 0.85,
+        "justification": "Carburant classé en charge 606400 (consommable, non immobilisable). Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût).",
+        "compteCharge": "606400",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 0.8,
+          "compteTva": "445660",
+          "motif": "Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût)."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Contrôle requis — TVA partiellement déductible (prorata 80 %) — Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût)."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.85,
+      "anomalies": [
+        {
+          "code": "TVA_NON_DEDUCTIBLE",
+          "gravite": "avertissement",
+          "message": "TVA partiellement déductible (prorata 80 %) — Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût)."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/15_carburant.pdf",
+        "journal": "ACH",
+        "date": "2026-03-19",
+        "numeroPiece": "FAC-2026-015",
+        "libelle": "Station Total Access - FAC-2026-015",
+        "lignes": [
+          {
+            "compte": "606400",
+            "libelle": "Carburants (achats non stockés) - Station Total Access - FAC-2026-015 (dont TVA non déductible 3.20 € réintégrée)",
+            "debit": 83.2,
+            "credit": 0
+          },
+          {
+            "compte": "445660",
+            "libelle": "TVA déductible 20% (80% déductible) - FAC-2026-015",
+            "debit": 12.8,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Station Total Access - FAC-2026-015",
+            "debit": 0,
+            "credit": 96
+          }
+        ],
+        "totalDebit": 96,
+        "totalCredit": 96,
+        "equilibre": true
+      },
+      "justification": "Carburant classé en charge 606400 (consommable, non immobilisable). Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût).",
+      "motifRoutage": "Contrôle requis — TVA partiellement déductible (prorata 80 %) — Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/16_immo_ordinateur.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/16_immo_ordinateur.pdf",
+      "fields": {
+        "fournisseur": "InfoTech Distribution",
+        "siren": "481234896",
+        "tvaIntra": "FR59481234896D",
+        "dateFacture": "2026-03-21",
+        "numeroFacture": "FAC-2026-016",
+        "montantHT": 1200,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 240
+          }
+        ],
+        "montantTTC": 1440,
+        "paysFournisseur": "FR",
+        "designation": "Ordinateur portable professionnel",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/16_immo_ordinateur.pdf"
+      },
+      "validation": {
+        "statut": "valide",
+        "anomalies": []
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/16_immo_ordinateur.pdf",
+          "journal": "ACH",
+          "date": "2026-03-21",
+          "numeroPiece": "FAC-2026-016",
+          "libelle": "InfoTech Distribution - FAC-2026-016",
+          "lignes": [
+            {
+              "compte": "218300",
+              "libelle": "Matériel informatique et de bureau - InfoTech Distribution - FAC-2026-016",
+              "debit": 1200,
+              "credit": 0
+            },
+            {
+              "compte": "445620",
+              "libelle": "TVA déductible 20% - FAC-2026-016",
+              "debit": 240,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur InfoTech Distribution - FAC-2026-016",
+              "debit": 0,
+              "credit": 1440
+            }
+          ],
+          "totalDebit": 1440,
+          "totalCredit": 1440,
+          "equilibre": true
+        },
+        "confidence": 1,
+        "justification": "Bien durable > 500 € HT immobilisé en 218300. TVA déductible sur immobilisation.",
+        "compteCharge": "218300",
+        "estImmobilisation": true,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445620",
+          "motif": "TVA déductible sur immobilisation."
+        }
+      },
+      "routage": {
+        "statut": "auto-valide",
+        "motif": "Écriture claire et conforme (confiance 100%)."
+      },
+      "statut": "auto-valide",
+      "confidence": 1,
+      "anomalies": [],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/16_immo_ordinateur.pdf",
+        "journal": "ACH",
+        "date": "2026-03-21",
+        "numeroPiece": "FAC-2026-016",
+        "libelle": "InfoTech Distribution - FAC-2026-016",
+        "lignes": [
+          {
+            "compte": "218300",
+            "libelle": "Matériel informatique et de bureau - InfoTech Distribution - FAC-2026-016",
+            "debit": 1200,
+            "credit": 0
+          },
+          {
+            "compte": "445620",
+            "libelle": "TVA déductible 20% - FAC-2026-016",
+            "debit": 240,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur InfoTech Distribution - FAC-2026-016",
+            "debit": 0,
+            "credit": 1440
+          }
+        ],
+        "totalDebit": 1440,
+        "totalCredit": 1440,
+        "equilibre": true
+      },
+      "justification": "Bien durable > 500 € HT immobilisé en 218300. TVA déductible sur immobilisation.",
+      "motifRoutage": "Écriture claire et conforme (confiance 100%)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/17_mobilier_saucissonne.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/17_mobilier_saucissonne.pdf",
+      "fields": {
+        "fournisseur": "Mobilier Pro",
+        "siren": "492345905",
+        "tvaIntra": "FR06492345905D",
+        "dateFacture": "2026-03-23",
+        "numeroFacture": "FAC-2026-017",
+        "montantHT": 1800,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 360
+          }
+        ],
+        "montantTTC": 2160,
+        "paysFournisseur": "FR",
+        "designation": "Lot de 20 chaises de bureau ergonomiques",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/17_mobilier_saucissonne.pdf"
+      },
+      "validation": {
+        "statut": "avertissement",
+        "anomalies": [
+          {
+            "code": "IMMOBILISATION",
+            "gravite": "avertissement",
+            "message": "Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global > 500 €."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/17_mobilier_saucissonne.pdf",
+          "journal": "ACH",
+          "date": "2026-03-23",
+          "numeroPiece": "FAC-2026-017",
+          "libelle": "Mobilier Pro - FAC-2026-017",
+          "lignes": [
+            {
+              "compte": "218400",
+              "libelle": "Mobilier - Mobilier Pro - FAC-2026-017",
+              "debit": 1800,
+              "credit": 0
+            },
+            {
+              "compte": "445620",
+              "libelle": "TVA déductible 20% - FAC-2026-017",
+              "debit": 360,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Mobilier Pro - FAC-2026-017",
+              "debit": 0,
+              "credit": 2160
+            }
+          ],
+          "totalDebit": 2160,
+          "totalCredit": 2160,
+          "equilibre": true
+        },
+        "confidence": 0.85,
+        "justification": "Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global > 500 €. TVA déductible sur immobilisation.",
+        "compteCharge": "218400",
+        "estImmobilisation": true,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445620",
+          "motif": "TVA déductible sur immobilisation."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Contrôle requis — Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global > 500 €."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.85,
+      "anomalies": [
+        {
+          "code": "IMMOBILISATION",
+          "gravite": "avertissement",
+          "message": "Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global > 500 €."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/17_mobilier_saucissonne.pdf",
+        "journal": "ACH",
+        "date": "2026-03-23",
+        "numeroPiece": "FAC-2026-017",
+        "libelle": "Mobilier Pro - FAC-2026-017",
+        "lignes": [
+          {
+            "compte": "218400",
+            "libelle": "Mobilier - Mobilier Pro - FAC-2026-017",
+            "debit": 1800,
+            "credit": 0
+          },
+          {
+            "compte": "445620",
+            "libelle": "TVA déductible 20% - FAC-2026-017",
+            "debit": 360,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Mobilier Pro - FAC-2026-017",
+            "debit": 0,
+            "credit": 2160
+          }
+        ],
+        "totalDebit": 2160,
+        "totalCredit": 2160,
+        "equilibre": true
+      },
+      "justification": "Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global > 500 €. TVA déductible sur immobilisation.",
+      "motifRoutage": "Contrôle requis — Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global > 500 €."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/18_intracom_autoliquidation.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/18_intracom_autoliquidation.pdf",
+      "fields": {
+        "fournisseur": "Berlin Software GmbH",
+        "siren": null,
+        "tvaIntra": "DE811569869D",
+        "dateFacture": "2026-03-24",
+        "numeroFacture": "FAC-2026-018",
+        "montantHT": 2000,
+        "tvaParTaux": [],
+        "montantTTC": 2000,
+        "paysFournisseur": "DE",
+        "designation": "Prestation de conseil et developpement logiciel",
+        "champsManquants": [
+          "siren"
+        ],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/18_intracom_autoliquidation.pdf"
+      },
+      "validation": {
+        "statut": "avertissement",
+        "anomalies": [
+          {
+            "code": "AUTOLIQUIDATION",
+            "gravite": "avertissement",
+            "message": "Achat de service intracom sans TVA : autoliquidation comptabilisée (TVA due 445200 / déductible 445662) au taux normal reconstitué — à contrôler (taux applicable réel)."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/18_intracom_autoliquidation.pdf",
+          "journal": "ACH",
+          "date": "2026-03-24",
+          "numeroPiece": "FAC-2026-018",
+          "libelle": "Berlin Software GmbH - FAC-2026-018",
+          "lignes": [
+            {
+              "compte": "622600",
+              "libelle": "Honoraires - Berlin Software GmbH - FAC-2026-018 (autoliquidation TVA intracom)",
+              "debit": 2000,
+              "credit": 0
+            },
+            {
+              "compte": "445662",
+              "libelle": "TVA déductible intracom 20% - FAC-2026-018",
+              "debit": 400,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Berlin Software GmbH - FAC-2026-018",
+              "debit": 0,
+              "credit": 2000
+            },
+            {
+              "compte": "445200",
+              "libelle": "TVA due intracom 20% (autoliquidation) - FAC-2026-018",
+              "debit": 0,
+              "credit": 400
+            }
+          ],
+          "totalDebit": 2400,
+          "totalCredit": 2400,
+          "equilibre": true
+        },
+        "confidence": 0.85,
+        "justification": "Classé en 622600 (Honoraires) sur mots-clés. Autoliquidation intracom : TVA due (445200) et TVA déductible (445662) comptabilisées au taux 20%.",
+        "compteCharge": "622600",
+        "estImmobilisation": false,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445662",
+          "motif": "Autoliquidation intracom : TVA due (445200) et TVA déductible (445662) comptabilisées au taux 20%."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Contrôle requis — Achat de service intracom sans TVA : autoliquidation comptabilisée (TVA due 445200 / déductible 445662) au taux normal reconstitué — à contrôler (taux applicable réel)."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.85,
+      "anomalies": [
+        {
+          "code": "AUTOLIQUIDATION",
+          "gravite": "avertissement",
+          "message": "Achat de service intracom sans TVA : autoliquidation comptabilisée (TVA due 445200 / déductible 445662) au taux normal reconstitué — à contrôler (taux applicable réel)."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/18_intracom_autoliquidation.pdf",
+        "journal": "ACH",
+        "date": "2026-03-24",
+        "numeroPiece": "FAC-2026-018",
+        "libelle": "Berlin Software GmbH - FAC-2026-018",
+        "lignes": [
+          {
+            "compte": "622600",
+            "libelle": "Honoraires - Berlin Software GmbH - FAC-2026-018 (autoliquidation TVA intracom)",
+            "debit": 2000,
+            "credit": 0
+          },
+          {
+            "compte": "445662",
+            "libelle": "TVA déductible intracom 20% - FAC-2026-018",
+            "debit": 400,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Berlin Software GmbH - FAC-2026-018",
+            "debit": 0,
+            "credit": 2000
+          },
+          {
+            "compte": "445200",
+            "libelle": "TVA due intracom 20% (autoliquidation) - FAC-2026-018",
+            "debit": 0,
+            "credit": 400
+          }
+        ],
+        "totalDebit": 2400,
+        "totalCredit": 2400,
+        "equilibre": true
+      },
+      "justification": "Classé en 622600 (Honoraires) sur mots-clés. Autoliquidation intracom : TVA due (445200) et TVA déductible (445662) comptabilisées au taux 20%.",
+      "motifRoutage": "Contrôle requis — Achat de service intracom sans TVA : autoliquidation comptabilisée (TVA due 445200 / déductible 445662) au taux normal reconstitué — à contrôler (taux applicable réel)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/19_remorque_transport.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/19_remorque_transport.pdf",
+      "fields": {
+        "fournisseur": "Remorques Sud",
+        "siren": "503456014",
+        "tvaIntra": "FR66503456014D",
+        "dateFacture": "2026-03-26",
+        "numeroFacture": "FAC-2026-019",
+        "montantHT": 480,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 96
+          }
+        ],
+        "montantTTC": 576,
+        "paysFournisseur": "FR",
+        "designation": "Remorque utilitaire 750 kg",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/19_remorque_transport.pdf"
+      },
+      "validation": {
+        "statut": "avertissement",
+        "anomalies": [
+          {
+            "code": "IMMOBILISATION",
+            "gravite": "avertissement",
+            "message": "Matériel de transport immobilisé en 218200 malgré un montant < 500 € (tolérance inapplicable)."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/19_remorque_transport.pdf",
+          "journal": "ACH",
+          "date": "2026-03-26",
+          "numeroPiece": "FAC-2026-019",
+          "libelle": "Remorques Sud - FAC-2026-019",
+          "lignes": [
+            {
+              "compte": "218200",
+              "libelle": "Matériel de transport - Remorques Sud - FAC-2026-019",
+              "debit": 480,
+              "credit": 0
+            },
+            {
+              "compte": "445620",
+              "libelle": "TVA déductible 20% - FAC-2026-019",
+              "debit": 96,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Remorques Sud - FAC-2026-019",
+              "debit": 0,
+              "credit": 576
+            }
+          ],
+          "totalDebit": 576,
+          "totalCredit": 576,
+          "equilibre": true
+        },
+        "confidence": 0.85,
+        "justification": "Matériel de transport immobilisé en 218200 malgré un montant < 500 € (tolérance inapplicable). TVA déductible sur immobilisation.",
+        "compteCharge": "218200",
+        "estImmobilisation": true,
+        "tvaTreatment": {
+          "tauxDeductibilite": 1,
+          "compteTva": "445620",
+          "motif": "TVA déductible sur immobilisation."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Contrôle requis — Matériel de transport immobilisé en 218200 malgré un montant < 500 € (tolérance inapplicable)."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.85,
+      "anomalies": [
+        {
+          "code": "IMMOBILISATION",
+          "gravite": "avertissement",
+          "message": "Matériel de transport immobilisé en 218200 malgré un montant < 500 € (tolérance inapplicable)."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/19_remorque_transport.pdf",
+        "journal": "ACH",
+        "date": "2026-03-26",
+        "numeroPiece": "FAC-2026-019",
+        "libelle": "Remorques Sud - FAC-2026-019",
+        "lignes": [
+          {
+            "compte": "218200",
+            "libelle": "Matériel de transport - Remorques Sud - FAC-2026-019",
+            "debit": 480,
+            "credit": 0
+          },
+          {
+            "compte": "445620",
+            "libelle": "TVA déductible 20% - FAC-2026-019",
+            "debit": 96,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Remorques Sud - FAC-2026-019",
+            "debit": 0,
+            "credit": 576
+          }
+        ],
+        "totalDebit": 576,
+        "totalCredit": 576,
+        "equilibre": true
+      },
+      "justification": "Matériel de transport immobilisé en 218200 malgré un montant < 500 € (tolérance inapplicable). TVA déductible sur immobilisation.",
+      "motifRoutage": "Contrôle requis — Matériel de transport immobilisé en 218200 malgré un montant < 500 € (tolérance inapplicable)."
+    },
+    {
+      "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/20_vehicule_tourisme.pdf",
+      "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/20_vehicule_tourisme.pdf",
+      "fields": {
+        "fournisseur": "Garage Central Auto",
+        "siren": "514567122",
+        "tvaIntra": "FR19514567122D",
+        "dateFacture": "2026-03-27",
+        "numeroFacture": "FAC-2026-020",
+        "montantHT": 15000,
+        "tvaParTaux": [
+          {
+            "taux": 20,
+            "montant": 3000
+          }
+        ],
+        "montantTTC": 18000,
+        "paysFournisseur": "FR",
+        "designation": "Achat vehicule de tourisme Peugeot 308",
+        "champsManquants": [],
+        "sourceFile": "/home/hams7/agent/pre-comptable-agent/data/invoices/20_vehicule_tourisme.pdf"
+      },
+      "validation": {
+        "statut": "avertissement",
+        "anomalies": [
+          {
+            "code": "TVA_NON_DEDUCTIBLE",
+            "gravite": "avertissement",
+            "message": "TVA non déductible — Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût)."
+          }
+        ]
+      },
+      "proposition": {
+        "ecriture": {
+          "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/20_vehicule_tourisme.pdf",
+          "journal": "ACH",
+          "date": "2026-03-27",
+          "numeroPiece": "FAC-2026-020",
+          "libelle": "Garage Central Auto - FAC-2026-020",
+          "lignes": [
+            {
+              "compte": "218200",
+              "libelle": "Matériel de transport - Garage Central Auto - FAC-2026-020 (dont TVA non déductible 3000.00 € réintégrée)",
+              "debit": 18000,
+              "credit": 0
+            },
+            {
+              "compte": "401000",
+              "libelle": "Fournisseur Garage Central Auto - FAC-2026-020",
+              "debit": 0,
+              "credit": 18000
+            }
+          ],
+          "totalDebit": 18000,
+          "totalCredit": 18000,
+          "equilibre": true
+        },
+        "confidence": 0.85,
+        "justification": "Matériel de transport immobilisé en 218200. Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût).",
+        "compteCharge": "218200",
+        "estImmobilisation": true,
+        "tvaTreatment": {
+          "tauxDeductibilite": 0,
+          "compteTva": null,
+          "motif": "Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût)."
+        }
+      },
+      "routage": {
+        "statut": "a-revoir",
+        "motif": "Contrôle requis — TVA non déductible — Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût)."
+      },
+      "statut": "a-revoir",
+      "confidence": 0.85,
+      "anomalies": [
+        {
+          "code": "TVA_NON_DEDUCTIBLE",
+          "gravite": "avertissement",
+          "message": "TVA non déductible — Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût)."
+        }
+      ],
+      "ecriture": {
+        "id": "/home/hams7/agent/pre-comptable-agent/data/invoices/20_vehicule_tourisme.pdf",
+        "journal": "ACH",
+        "date": "2026-03-27",
+        "numeroPiece": "FAC-2026-020",
+        "libelle": "Garage Central Auto - FAC-2026-020",
+        "lignes": [
+          {
+            "compte": "218200",
+            "libelle": "Matériel de transport - Garage Central Auto - FAC-2026-020 (dont TVA non déductible 3000.00 € réintégrée)",
+            "debit": 18000,
+            "credit": 0
+          },
+          {
+            "compte": "401000",
+            "libelle": "Fournisseur Garage Central Auto - FAC-2026-020",
+            "debit": 0,
+            "credit": 18000
+          }
+        ],
+        "totalDebit": 18000,
+        "totalCredit": 18000,
+        "equilibre": true
+      },
+      "justification": "Matériel de transport immobilisé en 218200. Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût).",
+      "motifRoutage": "Contrôle requis — TVA non déductible — Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût)."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "pre-comptable-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agent de pré-comptabilisation : factures fournisseurs PDF -> écritures comptables proposées, validées et routées par niveau de confiance.",
+  "scripts": {
+    "seed": "tsx scripts/seed-invoices.ts",
+    "demo": "tsx scripts/demo.ts",
+    "agent": "tsx scripts/demo.ts --agent",
+    "snapshot": "tsx scripts/snapshot.ts",
+    "dashboard": "vite dashboard",
+    "build:dashboard": "vite build dashboard",
+    "test": "tsx scripts/test-champs-critiques.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.68.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.10.38"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}

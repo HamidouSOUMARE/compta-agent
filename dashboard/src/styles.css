@@ -1,0 +1,105 @@
+:root {
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --panel-2: #273449;
+  --border: #334155;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --ok: #22c55e;
+  --ok-bg: rgba(34, 197, 94, 0.12);
+  --warn: #f59e0b;
+  --warn-bg: rgba(245, 158, 11, 0.12);
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.12);
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.app { max-width: 1240px; margin: 0 auto; padding: 24px; }
+
+header.masthead h1 { margin: 0 0 4px; font-size: 22px; }
+header.masthead p { margin: 0; color: var(--muted); }
+header.masthead .meta { font-size: 12px; margin-top: 6px; }
+header.masthead .meta code { color: var(--accent); }
+
+/* --- Bandeau de statistiques --- */
+.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 20px 0; }
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.stat .value { font-size: 24px; font-weight: 700; }
+.stat .label { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.stat.ok .value { color: var(--ok); }
+.stat.warn .value { color: var(--warn); }
+.stat.balance .value { font-size: 18px; }
+
+/* --- Barre de filtres --- */
+.toolbar { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.toolbar .filter { display: flex; align-items: center; gap: 6px; color: var(--muted); cursor: pointer; }
+.toolbar .spacer { flex: 1; }
+.toolbar .count { color: var(--muted); font-size: 13px; }
+
+/* --- Table --- */
+.layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 16px; align-items: start; }
+.table-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: var(--panel-2); }
+tbody tr.selected { background: rgba(56, 189, 248, 0.1); box-shadow: inset 3px 0 0 var(--accent); }
+td.num { font-family: var(--mono); text-align: right; white-space: nowrap; }
+td .supplier { font-weight: 600; }
+td .sub { color: var(--muted); font-size: 12px; }
+
+/* --- Badges --- */
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+.badge.auto { color: var(--ok); background: var(--ok-bg); }
+.badge.revoir { color: var(--warn); background: var(--warn-bg); }
+.badge.bloquante { color: var(--danger); background: var(--danger-bg); }
+.badge.avertissement { color: var(--warn); background: var(--warn-bg); }
+.badges { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.conf-bar { height: 6px; border-radius: 999px; background: var(--border); overflow: hidden; width: 60px; }
+.conf-bar > span { display: block; height: 100%; }
+
+/* --- Panneau de détail --- */
+.detail { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 18px; position: sticky; top: 24px; }
+.detail h2 { margin: 0 0 2px; font-size: 16px; }
+.detail .file { color: var(--muted); font-size: 12px; font-family: var(--mono); }
+.detail .section-title { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; margin: 18px 0 8px; }
+.justif { background: var(--panel-2); border-left: 3px solid var(--accent); padding: 10px 12px; border-radius: 6px; line-height: 1.5; }
+.motif { color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+/* --- Écriture --- */
+.ecriture { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 13px; }
+.ecriture th, .ecriture td { padding: 6px 8px; border-bottom: 1px solid var(--border); }
+.ecriture td.compte { color: var(--accent); }
+.ecriture td.amount { text-align: right; }
+.ecriture tr.total td { border-top: 2px solid var(--border); border-bottom: none; font-weight: 700; }
+.ecriture .lib { font-family: system-ui, sans-serif; color: var(--muted); font-size: 12px; }
+.equilibre { display: inline-flex; gap: 6px; align-items: center; margin-top: 8px; font-size: 12px; }
+
+.empty { color: var(--muted); text-align: center; padding: 40px; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .detail { position: static; }
+}

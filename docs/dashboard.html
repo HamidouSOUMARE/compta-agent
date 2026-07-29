@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard de révision — pré-comptabilisation</title></head>
+<body>
+<style>
+  :root{
+    --bg:#f7f8fa; --panel:#ffffff; --panel-2:#f1f4f8; --border:#dce1e8;
+    --ink:#1b2430; --muted:#697588; --accent:#2563a8;
+    --ok:#1a8f52; --ok-bg:#e6f4ec; --warn:#b6791b; --warn-bg:#fbf1dd; --danger:#c0392b; --danger-bg:#fbe9e7;
+    --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#0f1620; --panel:#18212e; --panel-2:#212c3b; --border:#2c3a4c;
+      --ink:#e7edf5; --muted:#93a1b5; --accent:#5aa9f0;
+      --ok:#3ad07f; --ok-bg:rgba(58,208,127,.13); --warn:#e9a838; --warn-bg:rgba(233,168,56,.14); --danger:#f0685a; --danger-bg:rgba(240,104,90,.14); }
+  }
+  :root[data-theme="light"]{ --bg:#f7f8fa; --panel:#fff; --panel-2:#f1f4f8; --border:#dce1e8; --ink:#1b2430; --muted:#697588; --accent:#2563a8; --ok:#1a8f52; --ok-bg:#e6f4ec; --warn:#b6791b; --warn-bg:#fbf1dd; --danger:#c0392b; --danger-bg:#fbe9e7; }
+  :root[data-theme="dark"]{ --bg:#0f1620; --panel:#18212e; --panel-2:#212c3b; --border:#2c3a4c; --ink:#e7edf5; --muted:#93a1b5; --accent:#5aa9f0; --ok:#3ad07f; --ok-bg:rgba(58,208,127,.13); --warn:#e9a838; --warn-bg:rgba(233,168,56,.14); --danger:#f0685a; --danger-bg:rgba(240,104,90,.14); }
+  *{box-sizing:border-box}
+  body{margin:0}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 24px 64px;color:var(--ink);
+    background:var(--bg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.5;
+    font-variant-numeric:tabular-nums;min-height:100vh;}
+  .mast h1{margin:0 0 4px;font-size:23px;letter-spacing:-.01em;text-wrap:balance}
+  .mast p{margin:0;color:var(--muted);max-width:64ch}
+  .mast .meta{margin-top:8px;font-size:12px;color:var(--muted)}
+  .mast .meta code{color:var(--accent);font-family:var(--mono)}
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:22px 0}
+  .stat{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+  .stat .v{font-size:25px;font-weight:700;letter-spacing:-.02em}
+  .stat .l{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+  .stat.ok .v{color:var(--ok)} .stat.warn .v{color:var(--warn)} .stat.bal .v{font-size:18px}
+  h2.sec{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:30px 0 12px;font-weight:600}
+  .tablewrap{overflow-x:auto;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+  table{width:100%;border-collapse:collapse;min-width:760px}
+  thead th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600;padding:11px 12px;border-bottom:1px solid var(--border)}
+  tbody td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  .mono{font-family:var(--mono)} .num{text-align:right;white-space:nowrap} .small{font-size:12px} .muted{color:var(--muted)}
+  .sev{width:4px;padding:0!important} .sev-ok{background:var(--ok)} .sev-warn{background:var(--warn)}
+  .fournisseur{font-weight:600} .desig{max-width:230px} .compte{color:var(--accent)}
+  .tag{margin-left:6px;font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:0 4px;font-family:system-ui}
+  .conf{white-space:nowrap} .bar{display:inline-block;width:58px;height:6px;border-radius:99px;background:var(--border);overflow:hidden;vertical-align:middle;margin-right:6px}
+  .bar span{display:block;height:100%} .bar .hi{background:var(--ok)} .bar .mid{background:var(--warn)} .bar .lo{background:var(--danger)}
+  .pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:600;white-space:nowrap}
+  .pill.auto{color:var(--ok);background:var(--ok-bg)} .pill.revoir{color:var(--warn);background:var(--warn-bg)}
+  .chips{display:flex;flex-wrap:wrap;gap:4px}
+  .chip{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.5px;font-weight:600;white-space:nowrap}
+  .chip.ok{color:var(--ok);background:var(--ok-bg)} .chip.avertissement{color:var(--warn);background:var(--warn-bg)} .chip.bloquante{color:var(--danger);background:var(--danger-bg)}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .card header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+  .card h3{margin:0;font-size:15px}
+  .justif{margin:0 0 4px;background:var(--panel-2);border-left:3px solid var(--accent);padding:9px 11px;border-radius:6px}
+  .motif{margin:0 0 10px;color:var(--muted);font-size:12.5px}
+  table.ecriture{min-width:0} table.ecriture th{padding:6px 8px} table.ecriture td{padding:6px 8px;font-size:12.5px}
+  table.ecriture .total td{font-weight:700;border-top:2px solid var(--border);border-bottom:none}
+  @media (max-width:820px){ .stats{grid-template-columns:repeat(2,1fr)} .cards{grid-template-columns:1fr} }
+</style>
+<div class="wrap">
+  <header class="mast">
+    <h1>Agent de pré-comptabilisation — dashboard de révision</h1>
+    <p>Factures fournisseurs → écritures proposées, validées et routées par niveau de confiance. Human-in-the-loop : aucune écriture n'est postée automatiquement.</p>
+    <div class="meta">Lot du 05/07/2026 14:41:18 · mode <code>deterministe</code> · 20 factures</div>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><div class="v">20</div><div class="l">Factures traitées</div></div>
+    <div class="stat ok"><div class="v">10</div><div class="l">Auto-validées</div></div>
+    <div class="stat warn"><div class="v">10</div><div class="l">À revoir</div></div>
+    <div class="stat bal"><div class="v">35 134,00 €</div><div class="l">Total débit</div></div>
+    <div class="stat bal"><div class="v" style="color:var(--ok)">Équilibré ✓</div><div class="l">Débit = Crédit</div></div>
+  </section>
+
+  <h2 class="sec">Journal des écritures proposées</h2>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th></th><th>Fournisseur</th><th>Désignation</th><th>Compte</th><th class="num">TTC</th><th>Confiance</th><th>Statut</th><th>Anomalies</th></tr></thead>
+      <tbody>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">Textile Gros SARL</div>
+      <div class="muted small">FAC-2026-001 · 2026-03-12</div>
+    </td>
+    <td class="desig muted">Achat de marchandises textiles pour revent</td>
+    <td class="mono compte">607000</td>
+    <td class="mono num">1 500,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">Papeterie Centrale</div>
+      <div class="muted small">FAC-2026-002 · 2026-03-05</div>
+    </td>
+    <td class="desig muted">Fournitures administratives et papeterie</td>
+    <td class="mono compte">606400</td>
+    <td class="mono num">216,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">SCI Les Tilleuls</div>
+      <div class="muted small">FAC-2026-003 · 2026-03-01</div>
+    </td>
+    <td class="desig muted">Loyer bail commercial mars 2026</td>
+    <td class="mono compte">613000</td>
+    <td class="mono num">1 080,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">Cabinet Durand Expertise</div>
+      <div class="muted small">FAC-2026-004 · 2026-03-15</div>
+    </td>
+    <td class="desig muted">Honoraires expert-comptable mensuels</td>
+    <td class="mono compte">622600</td>
+    <td class="mono num">720,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">Orange Business</div>
+      <div class="muted small">FAC-2026-005 · 2026-03-20</div>
+    </td>
+    <td class="desig muted">Abonnement telephone et internet professio</td>
+    <td class="mono compte">626000</td>
+    <td class="mono num">54,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">Primeur des Halles</div>
+      <div class="muted small">FAC-2026-006 · 2026-03-22</div>
+    </td>
+    <td class="desig muted">Achat de marchandises alimentaires pour re</td>
+    <td class="mono compte">607000</td>
+    <td class="mono num">844,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:90%"></span></div>
+      <span class="mono small muted">90%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">Plomberie Martin</div>
+      <div class="muted small">FAC-2026-007 · 2026-03-18</div>
+    </td>
+    <td class="desig muted">Reparation et entretien plomberie des loca</td>
+    <td class="mono compte">615000</td>
+    <td class="mono num">384,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">EDF Entreprises</div>
+      <div class="muted small">FAC-2026-008 · 2026-03-25</div>
+    </td>
+    <td class="desig muted">Fourniture electricite energie des locaux</td>
+    <td class="mono compte">606400</td>
+    <td class="mono num">252,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">Maitre Lefevre Avocat</div>
+      <div class="muted small">FAC-2026-009 · 2026-03-28</div>
+    </td>
+    <td class="desig muted">Honoraires conseil juridique</td>
+    <td class="mono compte">622600</td>
+    <td class="mono num">1 800,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Textile Gros SARL</div>
+      <div class="muted small">FAC-2026-001 · 2026-03-12</div>
+    </td>
+    <td class="desig muted">Achat de marchandises textiles pour revent</td>
+    <td class="mono compte">607000</td>
+    <td class="mono num">1 500,00</td>
+    <td class="conf">
+      <div class="bar"><span class="lo" style="width:25%"></span></div>
+      <span class="mono small muted">25%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip bloquante" title="Doublon probable : Textile Gros SARL / FAC-2026-001 / 1500 € déjà traité.">Doublon</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Bureautique Plus</div>
+      <div class="muted small">FAC-2026-011 · 2026-03-10</div>
+    </td>
+    <td class="desig muted">Fournitures diverses d'atelier</td>
+    <td class="mono compte">606400</td>
+    <td class="mono num">620,00</td>
+    <td class="conf">
+      <div class="bar"><span class="lo" style="width:25%"></span></div>
+      <span class="mono small muted">25%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip bloquante" title="Incohérence : HT 500 + TVA 100.00 ≠ TTC 620.">TTC incohérent</span> <span class="chip avertissement" title="Bien durable ≤ 500 € HT : maintenu en charge (606400) par tolérance. Plusieurs natures possibles (218400, 606400).">Compte ambigu</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Distrib Rapide</div>
+      <div class="muted small">FAC-2026-012 · 2026-03-11</div>
+    </td>
+    <td class="desig muted">Achat de marchandises pour revente</td>
+    <td class="mono compte">607000</td>
+    <td class="mono num">480,00</td>
+    <td class="conf">
+      <div class="bar"><span class="lo" style="width:25%"></span></div>
+      <span class="mono small muted">25%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip bloquante" title="SIREN 123456780 invalide (échec de la clé de Luhn).">SIREN invalide</span> <span class="chip bloquante" title="Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible.">Mention manquante</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Import Direct</div>
+      <div class="muted small">FAC-2026-013 · 2026-03-14</div>
+    </td>
+    <td class="desig muted">Achat de marchandises pour revente</td>
+    <td class="mono compte">607000</td>
+    <td class="mono num">900,00</td>
+    <td class="conf">
+      <div class="bar"><span class="lo" style="width:25%"></span></div>
+      <span class="mono small muted">25%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip bloquante" title="Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible.">Mention manquante</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Restaurant Le Gourmet</div>
+      <div class="muted small">FAC-2026-014 · 2026-03-16</div>
+    </td>
+    <td class="desig muted">Repas d'affaires et reception clients</td>
+    <td class="mono compte">625700</td>
+    <td class="mono num">132,00</td>
+    <td class="conf">
+      <div class="bar"><span class="mid" style="width:75%"></span></div>
+      <span class="mono small muted">75%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip avertissement" title="TVA déductible sous conditions (restauration / réception) : à vérifier.">TVA à vérifier</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Station Total Access</div>
+      <div class="muted small">FAC-2026-015 · 2026-03-19</div>
+    </td>
+    <td class="desig muted">Carburant essence sans plomb 95 - vehicule</td>
+    <td class="mono compte">606400</td>
+    <td class="mono num">96,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:85%"></span></div>
+      <span class="mono small muted">85%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip avertissement" title="TVA partiellement déductible (prorata 80 %) — Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût).">TVA non déductible</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-ok"></td>
+    <td>
+      <div class="fournisseur">InfoTech Distribution</div>
+      <div class="muted small">FAC-2026-016 · 2026-03-21</div>
+    </td>
+    <td class="desig muted">Ordinateur portable professionnel</td>
+    <td class="mono compte">218300<span class="tag">immo</span></td>
+    <td class="mono num">1 440,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:100%"></span></div>
+      <span class="mono small muted">100%</span>
+    </td>
+    <td><span class="pill auto">Auto-validé</span></td>
+    <td class="chips"><span class="chip ok">Conforme</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Mobilier Pro</div>
+      <div class="muted small">FAC-2026-017 · 2026-03-23</div>
+    </td>
+    <td class="desig muted">Lot de 20 chaises de bureau ergonomiques</td>
+    <td class="mono compte">218400<span class="tag">immo</span></td>
+    <td class="mono num">2 160,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:85%"></span></div>
+      <span class="mono small muted">85%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip avertissement" title="Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global &gt; 500 €.">Immobilisation</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Berlin Software GmbH</div>
+      <div class="muted small">FAC-2026-018 · 2026-03-24</div>
+    </td>
+    <td class="desig muted">Prestation de conseil et developpement log</td>
+    <td class="mono compte">622600</td>
+    <td class="mono num">2 000,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:85%"></span></div>
+      <span class="mono small muted">85%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip avertissement" title="Achat de service intracom sans TVA : autoliquidation comptabilisée (TVA due 445200 / déductible 445662) au taux normal reconstitué — à contrôler (taux applicable réel).">Autoliquidation</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Remorques Sud</div>
+      <div class="muted small">FAC-2026-019 · 2026-03-26</div>
+    </td>
+    <td class="desig muted">Remorque utilitaire 750 kg</td>
+    <td class="mono compte">218200<span class="tag">immo</span></td>
+    <td class="mono num">576,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:85%"></span></div>
+      <span class="mono small muted">85%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip avertissement" title="Matériel de transport immobilisé en 218200 malgré un montant &lt; 500 € (tolérance inapplicable).">Immobilisation</span></td>
+  </tr>
+<tr>
+    <td class="sev sev-warn"></td>
+    <td>
+      <div class="fournisseur">Garage Central Auto</div>
+      <div class="muted small">FAC-2026-020 · 2026-03-27</div>
+    </td>
+    <td class="desig muted">Achat vehicule de tourisme Peugeot 308</td>
+    <td class="mono compte">218200<span class="tag">immo</span></td>
+    <td class="mono num">18 000,00</td>
+    <td class="conf">
+      <div class="bar"><span class="hi" style="width:85%"></span></div>
+      <span class="mono small muted">85%</span>
+    </td>
+    <td><span class="pill revoir">À revoir</span></td>
+    <td class="chips"><span class="chip avertissement" title="TVA non déductible — Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût).">TVA non déductible</span></td>
+  </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sec">Pièces routées « à revoir » — écriture proposée &amp; motif</h2>
+  <div class="cards">
+<article class="card">
+    <header>
+      <h3>Textile Gros SARL</h3>
+      <span class="pill revoir">À revoir · 25%</span>
+    </header>
+    <p class="justif">Classé en 607000 (Achats de marchandises) sur mots-clés. TVA déductible sur biens et services.</p>
+    <p class="motif">→ Anomalie bloquante — Doublon probable : Textile Gros SARL / FAC-2026-001 / 1500 € déjà traité.</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">607000</td>
+        <td class="muted small">Achats de marchandises - Textile Gros SARL - FAC-2026-001</td>
+        <td class="mono num">1 250,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">445660</td>
+        <td class="muted small">TVA déductible 20% - FAC-2026-001</td>
+        <td class="mono num">250,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Textile Gros SARL - FAC-2026-001</td>
+        <td class="mono num"></td>
+        <td class="mono num">1 500,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">1 500,00</td><td class="mono num">1 500,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip bloquante" title="Doublon probable : Textile Gros SARL / FAC-2026-001 / 1500 € déjà traité.">Doublon</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Bureautique Plus</h3>
+      <span class="pill revoir">À revoir · 25%</span>
+    </header>
+    <p class="justif">Bien durable ≤ 500 € HT : maintenu en charge (606400) par tolérance. Plusieurs natures possibles (218400, 606400). TVA déductible sur biens et services.</p>
+    <p class="motif">→ Anomalie bloquante — Incohérence : HT 500 + TVA 100.00 ≠ TTC 620.</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">606400</td>
+        <td class="muted small">Petit équipement (tolérance &lt; 500 €) - Bureautique Plus - FAC-2026-011</td>
+        <td class="mono num">500,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">445660</td>
+        <td class="muted small">TVA déductible 20% - FAC-2026-011</td>
+        <td class="mono num">100,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Bureautique Plus - FAC-2026-011</td>
+        <td class="mono num"></td>
+        <td class="mono num">600,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">600,00</td><td class="mono num">600,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip bloquante" title="Incohérence : HT 500 + TVA 100.00 ≠ TTC 620.">TTC incohérent</span> <span class="chip avertissement" title="Bien durable ≤ 500 € HT : maintenu en charge (606400) par tolérance. Plusieurs natures possibles (218400, 606400).">Compte ambigu</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Distrib Rapide</h3>
+      <span class="pill revoir">À revoir · 25%</span>
+    </header>
+    <p class="justif">Classé en 607000 (Achats de marchandises) sur mots-clés. TVA non déductible : mention légale obligatoire manquante.</p>
+    <p class="motif">→ Anomalie bloquante — SIREN 123456780 invalide (échec de la clé de Luhn).</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">607000</td>
+        <td class="muted small">Achats de marchandises - Distrib Rapide - FAC-2026-012 (dont TVA non déductible 80.00 € réintégrée)</td>
+        <td class="mono num">480,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Distrib Rapide - FAC-2026-012</td>
+        <td class="mono num"></td>
+        <td class="mono num">480,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">480,00</td><td class="mono num">480,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip bloquante" title="SIREN 123456780 invalide (échec de la clé de Luhn).">SIREN invalide</span> <span class="chip bloquante" title="Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible.">Mention manquante</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Import Direct</h3>
+      <span class="pill revoir">À revoir · 25%</span>
+    </header>
+    <p class="justif">Classé en 607000 (Achats de marchandises) sur mots-clés. TVA non déductible : mention légale obligatoire manquante.</p>
+    <p class="motif">→ Anomalie bloquante — Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible.</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">607000</td>
+        <td class="muted small">Achats de marchandises - Import Direct - FAC-2026-013 (dont TVA non déductible 150.00 € réintégrée)</td>
+        <td class="mono num">900,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Import Direct - FAC-2026-013</td>
+        <td class="mono num"></td>
+        <td class="mono num">900,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">900,00</td><td class="mono num">900,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip bloquante" title="Mention(s) légale(s) manquante(s) : n° de TVA intracommunautaire (montant ≥ 150 €) — TVA non déductible.">Mention manquante</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Restaurant Le Gourmet</h3>
+      <span class="pill revoir">À revoir · 75%</span>
+    </header>
+    <p class="justif">Classé en 625700 (Réceptions, missions, déplacements) sur mots-clés. TVA déductible sous conditions (restauration / réception) : à vérifier.</p>
+    <p class="motif">→ Contrôle requis — TVA déductible sous conditions (restauration / réception) : à vérifier.</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">625700</td>
+        <td class="muted small">Réceptions, missions, déplacements - Restaurant Le Gourmet - FAC-2026-014</td>
+        <td class="mono num">120,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">445660</td>
+        <td class="muted small">TVA déductible 10% - FAC-2026-014</td>
+        <td class="mono num">12,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Restaurant Le Gourmet - FAC-2026-014</td>
+        <td class="mono num"></td>
+        <td class="mono num">132,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">132,00</td><td class="mono num">132,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip avertissement" title="TVA déductible sous conditions (restauration / réception) : à vérifier.">TVA à vérifier</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Station Total Access</h3>
+      <span class="pill revoir">À revoir · 85%</span>
+    </header>
+    <p class="justif">Carburant classé en charge 606400 (consommable, non immobilisable). Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût).</p>
+    <p class="motif">→ Contrôle requis — TVA partiellement déductible (prorata 80 %) — Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût).</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">606400</td>
+        <td class="muted small">Carburants (achats non stockés) - Station Total Access - FAC-2026-015 (dont TVA non déductible 3.20 € réintégrée)</td>
+        <td class="mono num">83,20</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">445660</td>
+        <td class="muted small">TVA déductible 20% (80% déductible) - FAC-2026-015</td>
+        <td class="mono num">12,80</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Station Total Access - FAC-2026-015</td>
+        <td class="mono num"></td>
+        <td class="mono num">96,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">96,00</td><td class="mono num">96,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip avertissement" title="TVA partiellement déductible (prorata 80 %) — Carburant véhicule de tourisme (VP) : TVA déductible à 80 % (20 % réintégrés au coût).">TVA non déductible</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Mobilier Pro</h3>
+      <span class="pill revoir">À revoir · 85%</span>
+    </header>
+    <p class="justif">Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global &gt; 500 €. TVA déductible sur immobilisation.</p>
+    <p class="motif">→ Contrôle requis — Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global &gt; 500 €.</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">218400</td>
+        <td class="muted small">Mobilier - Mobilier Pro - FAC-2026-017</td>
+        <td class="mono num">1 800,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">445620</td>
+        <td class="muted small">TVA déductible 20% - FAC-2026-017</td>
+        <td class="mono num">360,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Mobilier Pro - FAC-2026-017</td>
+        <td class="mono num"></td>
+        <td class="mono num">2 160,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">2 160,00</td><td class="mono num">2 160,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip avertissement" title="Ensemble cohérent (saucissonnage) : immobilisé en 218400 d'après le prix global &gt; 500 €.">Immobilisation</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Berlin Software GmbH</h3>
+      <span class="pill revoir">À revoir · 85%</span>
+    </header>
+    <p class="justif">Classé en 622600 (Honoraires) sur mots-clés. Autoliquidation intracom : TVA due (445200) et TVA déductible (445662) comptabilisées au taux 20%.</p>
+    <p class="motif">→ Contrôle requis — Achat de service intracom sans TVA : autoliquidation comptabilisée (TVA due 445200 / déductible 445662) au taux normal reconstitué — à contrôler (taux applicable réel).</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">622600</td>
+        <td class="muted small">Honoraires - Berlin Software GmbH - FAC-2026-018 (autoliquidation TVA intracom)</td>
+        <td class="mono num">2 000,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">445662</td>
+        <td class="muted small">TVA déductible intracom 20% - FAC-2026-018</td>
+        <td class="mono num">400,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Berlin Software GmbH - FAC-2026-018</td>
+        <td class="mono num"></td>
+        <td class="mono num">2 000,00</td>
+      </tr><tr>
+        <td class="mono compte">445200</td>
+        <td class="muted small">TVA due intracom 20% (autoliquidation) - FAC-2026-018</td>
+        <td class="mono num"></td>
+        <td class="mono num">400,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">2 400,00</td><td class="mono num">2 400,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip avertissement" title="Achat de service intracom sans TVA : autoliquidation comptabilisée (TVA due 445200 / déductible 445662) au taux normal reconstitué — à contrôler (taux applicable réel).">Autoliquidation</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Remorques Sud</h3>
+      <span class="pill revoir">À revoir · 85%</span>
+    </header>
+    <p class="justif">Matériel de transport immobilisé en 218200 malgré un montant &lt; 500 € (tolérance inapplicable). TVA déductible sur immobilisation.</p>
+    <p class="motif">→ Contrôle requis — Matériel de transport immobilisé en 218200 malgré un montant &lt; 500 € (tolérance inapplicable).</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">218200</td>
+        <td class="muted small">Matériel de transport - Remorques Sud - FAC-2026-019</td>
+        <td class="mono num">480,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">445620</td>
+        <td class="muted small">TVA déductible 20% - FAC-2026-019</td>
+        <td class="mono num">96,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Remorques Sud - FAC-2026-019</td>
+        <td class="mono num"></td>
+        <td class="mono num">576,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">576,00</td><td class="mono num">576,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip avertissement" title="Matériel de transport immobilisé en 218200 malgré un montant &lt; 500 € (tolérance inapplicable).">Immobilisation</span></div>
+  </article>
+<article class="card">
+    <header>
+      <h3>Garage Central Auto</h3>
+      <span class="pill revoir">À revoir · 85%</span>
+    </header>
+    <p class="justif">Matériel de transport immobilisé en 218200. Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût).</p>
+    <p class="motif">→ Contrôle requis — TVA non déductible — Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût).</p>
+    <div class="tablewrap">
+      <table class="ecriture">
+        <thead><tr><th>Compte</th><th>Libellé</th><th class="num">Débit</th><th class="num">Crédit</th></tr></thead>
+        <tbody><tr>
+        <td class="mono compte">218200</td>
+        <td class="muted small">Matériel de transport - Garage Central Auto - FAC-2026-020 (dont TVA non déductible 3000.00 € réintégrée)</td>
+        <td class="mono num">18 000,00</td>
+        <td class="mono num"></td>
+      </tr><tr>
+        <td class="mono compte">401000</td>
+        <td class="muted small">Fournisseur Garage Central Auto - FAC-2026-020</td>
+        <td class="mono num"></td>
+        <td class="mono num">18 000,00</td>
+      </tr>
+          <tr class="total"><td colspan="2">Totaux</td><td class="mono num">18 000,00</td><td class="mono num">18 000,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chips"><span class="chip ok">Équilibré ✓</span> <span class="chip avertissement" title="TVA non déductible — Véhicule de tourisme : TVA non déductible (100 % réintégrée au coût).">TVA non déductible</span></div>
+  </article>
+  </div>
+</div>
+</body>
+</html>
