@@ -2,7 +2,7 @@
 // Génère un SNAPSHOT statique et autonome du dashboard de révision à partir de
 // data/output/ecritures.json :
 //   - docs/dashboard.html          (page autonome, ouvrable au double-clic)
-//   - docs/_artifact-body.html     (corps seul, pour publication en Artifact)
+//   - docs/_embed-body.html        (corps seul, pour intégration dans une page)
 // Aucun navigateur requis : rendu côté serveur.
 // ---------------------------------------------------------------------------
 
@@ -201,14 +201,14 @@ ${body}
 
   const out = resolve(ROOT, "docs/dashboard.html");
   await writeFile(out, standalone, "utf8");
-  await writeFile(resolve(ROOT, "docs/_artifact-body.html"), body, "utf8");
+  await writeFile(resolve(ROOT, "docs/_embed-body.html"), body, "utf8");
   return out;
 }
 
 async function main() {
   const batch = JSON.parse(await readFile(ECRITURES_JSON, "utf8")) as BatchResult;
   const out = await generateSnapshot(batch);
-  console.log(`✅ Snapshot généré : ${out} (+ docs/_artifact-body.html)`);
+  console.log(`✅ Snapshot généré : ${out} (+ docs/_embed-body.html)`);
 }
 
 // Exécution directe (npm run snapshot) uniquement.

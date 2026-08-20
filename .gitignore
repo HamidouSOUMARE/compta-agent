@@ -12,5 +12,5 @@ data/output/*.csv
 # Exception : artefact de démo committé pour que le dashboard s'affiche dès le clone.
 # Régénérable à l'identique par `npm run demo` (sortie déterministe).
 !data/output/ecritures.json
-docs/_artifact-body.html
+docs/_embed-body.html
 *.log
