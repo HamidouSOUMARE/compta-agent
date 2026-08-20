@@ -6,13 +6,13 @@
 // ---------------------------------------------------------------------------
 
 import { readdir } from "node:fs/promises";
-import { resolve } from "node:path";
+import { relative, resolve } from "node:path";
 import Anthropic from "@anthropic-ai/sdk";
 import { extractPdfText } from "../lib/pdf.js";
 import { TOOLS } from "../tools/index.js";
 import type { DejaTraitee } from "../tools/validateInvoice.js";
 import { runAgentOnInvoice, assembleDossier } from "./runAgent.js";
-import { INVOICES_DIR } from "../store.js";
+import { INVOICES_DIR, ROOT } from "../store.js";
 import type {
   BatchResult,
   DossierFacture,
@@ -24,12 +24,18 @@ import type {
 import { SEUIL_AUTO_VALIDATION } from "../config.js";
 import { round2 } from "../lib/tva.js";
 
+/**
+ * Chemins RELATIFS à la racine du projet : ils servent d'identifiant de dossier
+ * et sont persistés dans ecritures.json. Un chemin absolu y exposerait
+ * l'arborescence de la machine qui a lancé la démo, et rendrait le livrable
+ * non reproductible d'un poste à l'autre.
+ */
 async function listInvoices(): Promise<string[]> {
   const files = await readdir(INVOICES_DIR);
   return files
     .filter((f) => f.toLowerCase().endsWith(".pdf"))
     .sort()
-    .map((f) => resolve(INVOICES_DIR, f));
+    .map((f) => relative(ROOT, resolve(INVOICES_DIR, f)));
 }
 
 /** Pipeline déterministe : extract -> validate -> propose -> route. */
@@ -61,7 +67,9 @@ export async function processBatch(mode: "deterministe" | "agent"): Promise<Batc
   const dejaTraitees: DejaTraitee[] = [];
 
   for (const file of invoices) {
-    const rawText = await extractPdfText(file);
+    // `file` reste relatif (identité persistée) ; la lecture disque a besoin
+    // du chemin absolu, résolu ici et nulle part ailleurs.
+    const rawText = await extractPdfText(resolve(ROOT, file));
     const label = file.split("/").pop();
 
     let dossier: DossierFacture;
